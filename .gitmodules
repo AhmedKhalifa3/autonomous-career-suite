@@ -1,0 +1,9 @@
+[submodule "job-discovery-inbox"]
+	path = job-discovery-inbox
+	url = https://github.com/AhmedKhalifa3/job-discovery-inbox.git
+[submodule "notion-tracker-mcp"]
+	path = notion-tracker-mcp
+	url = https://github.com/AhmedKhalifa3/notion-tracker-mcp.git
+[submodule "overleaf-cv-agent"]
+	path = overleaf-cv-agent
+	url = https://github.com/AhmedKhalifa3/overleaf-cv-agent.git
