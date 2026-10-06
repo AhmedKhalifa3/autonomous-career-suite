@@ -4,6 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10+-3776AB.svg?logo=python&logoColor=white)](https://python.org)
+[![CustomTkinter GUI](https://img.shields.io/badge/UI-CustomTkinter-blueviolet.svg)](https://github.com/TomSchimansky/CustomTkinter)
 [![FastMCP](https://img.shields.io/badge/Protocol-FastMCP-4B32C3.svg)](https://github.com/jlowin/fastmcp)
 [![Notion API](https://img.shields.io/badge/Integration-Notion%20API-000000.svg?logo=notion&logoColor=white)](https://developers.notion.com)
 [![Claude & Cursor](https://img.shields.io/badge/AI%20Clients-Claude%20%7C%20Cursor-D97706.svg?logo=anthropic&logoColor=white)](https://claude.ai)
@@ -14,7 +15,7 @@
 
 Landing high-impact software engineering roles requires speed, personalization, and meticulous tracking. Most candidates burn out manually scraping job boards, copy-pasting resumes, and losing track of applications.
 
-The **Autonomous Career Suite** completely automates this lifecycle by linking three decoupled, production-grade microservices into an intelligent closed-loop agent pipeline:
+The **Autonomous Career Suite** completely automates this lifecycle by linking four decoupled, production-grade microservices into an intelligent closed-loop agent pipeline:
 
 ```text
 ┌────────────────────────────────────────────────────────────────────────┐
@@ -26,15 +27,25 @@ The **Autonomous Career Suite** completely automates this lifecycle by linking t
                                     │ Pushes matching leads as 'New'
                                     ▼
 ┌────────────────────────────────────────────────────────────────────────┐
-│  2. NOTION TRACKER MCP (Claude / Cursor Integration Layer)             │
-│  • Model Context Protocol (FastMCP) server                             │
-│  • Dual-database architecture: Discovery Inbox + Active Applications   │
-│  • Interactive AI triage ('list_discovered_jobs', 'run_job_scout')     │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    │ Trigger application & CV tailoring
-                                    ▼
+│  NOTION DUAL-DATABASE BACKBONE                                         │
+│  • Database 1: Job Discovery Inbox (Triage & Match Fit)                │
+│  • Database 2: Active Applications Tracker (Stages, Dates, Resumes)    │
+└──────────────────┬──────────────────────────────────┬──────────────────┘
+                   │ Synchronized                     │ MCP Protocol
+                   ▼                                  ▼
+┌──────────────────────────────────────┐ ┌───────────────────────────────┐
+│  2. CAREER COCKPIT GUI               │ │  3. NOTION TRACKER MCP        │
+│  (Desktop Mission Control)           │ │  (Claude / Cursor Integration)│
+│  • CustomTkinter dark-mode desktop app│ │  • FastMCP server interface  │
+│  • Sub-25ms debounced search & filter│ │  • Interactive AI triage tool │
+│  • 1-Click Notion promotion & triage │ │  • Run scout & inspect leads  │
+│  • Embedded scout runner & live logs │ │                               │
+└──────────────────┬───────────────────┘ └───────────────┬───────────────┘
+                   │                                     │ Trigger CV tailoring
+                   └──────────────────┬──────────────────┘
+                                      ▼
 ┌────────────────────────────────────────────────────────────────────────┐
-│  3. OVERLEAF CV AGENT (Headless CLSI Cloud Compiler)                   │
+│  4. OVERLEAF CV AGENT (Headless CLSI Cloud Compiler)                   │
 │  • Deep JD keyword & skill analysis                                    │
 │  • Headless LaTeX compilation via Overleaf CLSI engine                 │
 │  • Attaches tailored 1-page PDF to Notion & logs status 'Applied'      │
@@ -43,13 +54,14 @@ The **Autonomous Career Suite** completely automates this lifecycle by linking t
 
 ---
 
-## 📦 The 3 Pillars
+## 📦 The 4 Pillars
 
 | Component | Repository | Description | Key Technologies |
 | :--- | :--- | :--- | :--- |
-| **1. Job Discovery Inbox** | [`job-discovery-inbox`](https://github.com/AhmedKhalifa3/job-discovery-inbox) | Autonomous ATS scraper & dynamic scoring engine that scans unlisted job boards and APIs. | `Python`, `ddgs`, `PyYAML`, `requests`, `Notion API` |
-| **2. Notion Tracker MCP** | [`notion-tracker-mcp`](https://github.com/AhmedKhalifa3/notion-tracker-mcp) | Model Context Protocol server exposing Notion databases to Claude Desktop & Cursor. | `Python`, `FastMCP`, `notion-client`, `mcp` |
-| **3. Overleaf CV Agent** | [`overleaf-cv-agent`](https://github.com/AhmedKhalifa3/overleaf-cv-agent) | Headless Overleaf CLSI cloud compiler for generating tailored 1-page LaTeX resumes. | `Python`, `httpx`, `BeautifulSoup4`, `LaTeX`, `CLSI` |
+| **1. Job Discovery Inbox** | [`job-discovery-inbox`](https://github.com/AhmedKhalifa3/job-discovery-inbox) | Autonomous ATS scraper & dynamic scoring engine scanning unlisted job boards and ATS APIs. | `Python`, `ddgs`, `PyYAML`, `requests`, `Notion API` |
+| **2. Career Cockpit GUI** | [`career-dashboard-gui`](https://github.com/AhmedKhalifa3/career-dashboard-gui) | Native desktop mission control for rapid manual lead triage, one-click promotion, live scout runs, and profile editing. | `Python`, `CustomTkinter`, `notion-client`, `Dark Theme` |
+| **3. Notion Tracker MCP** | [`notion-tracker-mcp`](https://github.com/AhmedKhalifa3/notion-tracker-mcp) | Model Context Protocol server exposing Notion databases to Claude Desktop & Cursor. | `Python`, `FastMCP`, `notion-client`, `mcp` |
+| **4. Overleaf CV Agent** | [`overleaf-cv-agent`](https://github.com/AhmedKhalifa3/overleaf-cv-agent) | Headless Overleaf CLSI cloud compiler for generating tailored 1-page LaTeX resumes. | `Python`, `httpx`, `BeautifulSoup4`, `LaTeX`, `CLSI` |
 
 ---
 
@@ -83,7 +95,7 @@ Fill in your API keys in `.env`:
 
 ---
 
-### 3. Setup All 3 Components
+### 3. Setup All 4 Components
 
 Run the automated setup script:
 
@@ -102,18 +114,43 @@ pip install -r requirements.txt
 cp profile.example.yaml profile.yaml
 cd ..
 
-# 2. Notion Tracker MCP
+# 2. Career Cockpit GUI (Desktop App)
+cd career-dashboard-gui
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+./install_desktop_app.sh   # Installs system launcher & desktop menu entry
+cd ..
+
+# 3. Notion Tracker MCP
 cd notion-tracker-mcp
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cd ..
 
-# 3. Overleaf CV Agent
+# 4. Overleaf CV Agent
 cd overleaf-cv-agent
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cd ..
 ```
+
+---
+
+## 🖥️ Career Cockpit Desktop App
+
+You can launch the visual triage station directly:
+
+```bash
+cd career-dashboard-gui
+./run.sh
+```
+
+Or hit your system Super key and launch **Career Cockpit** from your applications menu.
+
+* **Sub-25ms debounced search & tag filters** across roles, companies, locations, and match scores.
+* **1-Click promotion (`🚀 Move to Applications`)** to seamlessly promote leads to your tracking board.
+* **Built-in Job Scout runner** with real-time streaming console logs.
+* **Interactive Profile Editor (`⚙️ Profile`)** to tune keywords, seniority, and preferences without touching raw YAML files.
 
 ---
 
@@ -143,6 +180,15 @@ Now Claude Desktop and Cursor can directly execute the full discovery, triage, a
 
 ## 🔄 Daily Workflow Walkthrough
 
+Choose between rapid desktop triage or full autonomous AI conversation:
+
+### Workflow A: Visual Desktop Cockpit
+1. **Launch Cockpit:** Open `Career Cockpit` from your app menu or `./run.sh`.
+2. **Trigger Scout:** Click **`▶ Run Job Scout`** to scrape ATS boards and score new postings against `profile.yaml`.
+3. **Filter & Triage:** Inspect match scores, read full descriptions, and dismiss or archive irrelevant roles.
+4. **1-Click Promote:** Click **`🚀 Move to Applications`** to graduate the role to your active Kanban application tracker.
+
+### Workflow B: Autonomous Agent (Claude / Cursor)
 1. **Scout for New Roles:**
    Tell Claude:
    > *"Claude, run job scout for the past 24 hours."*  

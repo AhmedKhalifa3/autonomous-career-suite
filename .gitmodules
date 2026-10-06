@@ -7,3 +7,6 @@
 [submodule "overleaf-cv-agent"]
 	path = overleaf-cv-agent
 	url = https://github.com/AhmedKhalifa3/overleaf-cv-agent.git
+[submodule "career-dashboard-gui"]
+	path = career-dashboard-gui
+	url = https://github.com/AhmedKhalifa3/career-dashboard-gui.git
