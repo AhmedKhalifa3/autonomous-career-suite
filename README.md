@@ -60,7 +60,7 @@ The **Autonomous Career Suite** completely automates this lifecycle by linking f
 | :--- | :--- | :--- | :--- |
 | **1. Job Discovery Inbox** | [`job-discovery-inbox`](https://github.com/AhmedKhalifa3/job-discovery-inbox) | Autonomous ATS scraper & dynamic scoring engine scanning unlisted job boards and ATS APIs. | `Python`, `ddgs`, `PyYAML`, `requests`, `Notion API` |
 | **2. Career Cockpit GUI** | [`career-dashboard-gui`](https://github.com/AhmedKhalifa3/career-dashboard-gui) | Native desktop mission control for rapid manual lead triage, one-click promotion, live scout runs, and profile editing. | `Python`, `CustomTkinter`, `notion-client`, `Dark Theme` |
-| **3. Notion Tracker MCP** | [`notion-tracker-mcp`](https://github.com/AhmedKhalifa3/notion-tracker-mcp) | Model Context Protocol server exposing Notion databases to Claude Desktop & Cursor. | `Python`, `FastMCP`, `notion-client`, `mcp` |
+| **3. Notion Tracker MCP** | [`notion-tracker-mcp`](https://github.com/AhmedKhalifa3/notion-tracker-mcp) | Model Context Protocol server exposing Notion databases to Claude Desktop & Cursor with full job description body archiving. | `Python`, `FastMCP`, `notion-client`, `mcp` |
 | **4. Overleaf CV Agent** | [`overleaf-cv-agent`](https://github.com/AhmedKhalifa3/overleaf-cv-agent) | Headless Overleaf CLSI cloud compiler for generating tailored 1-page LaTeX resumes. | `Python`, `httpx`, `BeautifulSoup4`, `LaTeX`, `CLSI` |
 
 ---
@@ -202,7 +202,7 @@ Choose between rapid desktop triage or full autonomous AI conversation:
 3. **Dismiss or Tailor:**
    Tell Claude:
    > *"Dismiss lead #2. For lead #1, tailor my CV and compile the PDF via Overleaf."*  
-   *The agent updates Notion status to `Dismissed` for #2, compiles a tailored PDF for #1, creates an application entry, and attaches the compiled resume.*
+   *The agent updates Notion status to `Dismissed` for #2, compiles a tailored PDF for #1, creates an application entry, archives the full job description in the Notion page body (preventing data loss if links expire), and attaches the compiled resume.*
 
 ---
 
